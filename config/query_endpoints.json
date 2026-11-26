@@ -1,0 +1,132 @@
+{
+  "_comment": "长江网银查询接口抓包信息，2026-11-23 从 Edge IE 模式 F12 实测。Cookie 为登录态，会过期，运行时需重新抓取或由登录流程提供。",
+  "base_url": "https://ebank.jindiancloud.com/ebank/",
+  "headers_common": {
+    "Accept": "*/*",
+    "Accept-Language": "zh-CN",
+    "Cache-Control": "no-cache",
+    "Connection": "Keep-Alive",
+    "Content-Type": "application/x-www-form-urlencoded",
+    "Host": "ebank.jindiancloud.com",
+    "PE-AJAX": "true",
+    "PE-ENCODING": "UTF-8",
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; WOW64; Trident/7.0; rv:11.0) like Gecko"
+  },
+  "query_types": {
+    "资金流水": {
+      "url": "https://ebank.jindiancloud.com/ebank/ActTrsInfoQry.do",
+      "method": "POST",
+      "referer": "https://ebank.jindiancloud.com/ebank/ActTrsQryPre.do",
+      "params": {
+        "_viewReferer": "query/ActTrsQry/ActTrsQryPre",
+        "AcNo": "{账号}",
+        "AcNoAlias": "{账号别名}",
+        "BankAcType": "02",
+        "BeginDate": "{起始日期}",
+        "Currency": "CNY",
+        "EndDate": "{结束日期}",
+        "NoteExchange": "1",
+        "queryButton": "查询",
+        "RmbCNYAlias": "人民币",
+        "SeqNoKey": "",
+        "SubAcSeq": "",
+        "SubAcSerNo": "0"
+      },
+      "status": "已实测成功，响应HTML表格可解析",
+      "sample": "tools/resp_sample.html"
+    },
+    "贴现流水": {
+      "url": "https://ebank.jindiancloud.com/ebank/DiscountResultQryCPESQry.do",
+      "method": "POST",
+      "referer": "https://ebank.jindiancloud.com/ebank/DiscountResultQryCPESQryPre.do",
+      "pre_page": "https://ebank.jindiancloud.com/ebank/DiscountResultQryCPESQryPre.do",
+      "params_source": "2026-11-25 F12 抓包：二代电子票据>票据直贴>贴现结果查询。账号需同时传 cst_account 与 cust_account，另有动态字段名 {账号字段}（按当前盾的账号尾号+账户类型+公司名生成）。",
+      "params": {
+        "_viewReferer": "edraftCPES/DiscountCPES/DiscountResultQryCPESQryPre",
+        "{账号字段}": "",
+        "cst_account": "{账号}",
+        "cust_account": "{账号}",
+        "backFlag": "R008",
+        "busiType": "RQ08",
+        "bussFlg": "01",
+        "drftTyp": "",
+        "billType": "01",
+        "billTypeShow": "全部",
+        "cstNo": "",
+        "doItButton": "查询",
+        "drflType": "",
+        "endDtType": "按业务日期查询",
+        "endDt": "{结束日期}",
+        "qryBankSerialNo": "",
+        "qryMode": "2",
+        "qryModelShow": "按业务日期查询",
+        "starDt": "{起始日期}"
+      },
+      "headers_extra": {
+        "PE-AJAX": "true",
+        "PE-ENCODING": "UTF-8"
+      },
+      "status": "已实测成功(2026-11-25)：按业务日期区间一次查完，返回2条真实贴现记录。查询模式=按业务日期(qryMode=2)，业务方向=请求方(bussFlg=01)，票据种类=全部(drftTyp空)",
+      "menu_path": "二代电子票据 > 票据直贴 > 贴现结果查询",
+      "note": "返回表头：票据包号/子票区间/票据种类/票据包金额/业务方向/业务状态；每行的隐藏 input(List{n}xxx) 含 reqDt/cdNo/cdRange/isseAmt/dscntRate/intAmt/drwrNm 等完整字段，由 core/query_cjccb.parse_discount_rows 提取。"
+    },
+    "贴现票面信息": {
+      "url": "https://ebank.jindiancloud.com/ebank/BillBusinessHandleQryDetail.do",
+      "method": "POST",
+      "referer": "https://ebank.jindiancloud.com/ebank/BillBusinessHandleQryPre.do",
+      "params_source": "从结果页 showBillDetailDiv() onclick 参数 + F12请求正文提取",
+      "params": {
+        "AcNo": "{账号}",
+        "Amount": "{金额}",
+        "idDraft": "1",
+        "JnlNo": "{流水号}",
+        "JnlState": "0",
+        "JnlStateName": "",
+        "TransCode": "{业务码如DiscountApplyCPES}",
+        "TransCode1": "",
+        "TransDate": "{日期}"
+      },
+      "headers_extra": {
+        "PE-AJAX": "true",
+        "PE-ENCODING": "UTF-8"
+      },
+      "status": "接口已抓到并复刻成功，但当前账号返回【ENT999090】交易处理失败，请联系开户行——后端权限限制，非参数问题",
+      "note": "详情来自背书流水结果页的'处理结果'链接 onclick=showBillDetailDiv(...)。用户实测多笔均报联系开户行。需确认该账号是否有票据详情查看权限，或票据详情要走别的菜单(如电子票据>查询)。"
+    },
+    "背书流水": {
+      "url": "https://ebank.jindiancloud.com/ebank/BillBusinessHandleQry.do",
+      "method": "POST",
+      "referer": "https://ebank.jindiancloud.com/ebank/BillBusinessHandleQryPre.do",
+      "pre_page": "https://ebank.jindiancloud.com/ebank/BillBusinessHandleQryPre.do",
+      "params_source": "从BillBusinessHandleQryPre.do页面提取",
+      "params": {
+        "_viewReferer": "draft/Query/BillBusinessHandle",
+        "AcNo": "",
+        "AcNoNew": "{账号}",
+        "TransCode": "",
+        "TransCodeShow": "{业务类型}",
+        "JnlState": "",
+        "JnlStateShow": "",
+        "queryButton": "查询"
+      },
+      "trans_code_values": {
+        "AcceptorProEnsureResult": "承兑业务",
+        "EndorsementProEnsureResult": "背书转让结果",
+        "EndorsementAttornApplyResult": "背书转让申请",
+        "DiscountApplyResult": "贴现申请",
+        "IssueRegisterResult": "出票登记",
+        "RecourseApply": "追索申请"
+      },
+      "headers_extra": {
+        "PE-AJAX": "true",
+        "PE-ENCODING": "UTF-8"
+      },
+      "status": "已实测成功(2026-11-23)，拿到22条真实数据，含分页(3页)",
+      "note": "该接口是票据业务处理记录总表，含贴现/背书/签收等；返回的'处理结果'链接可能是票面详情入口",
+      "menu_path": "电子票据 > 票据处理查询"
+    },
+    "背书票面信息": {
+      "status": "待抓包"
+    }
+  }
+}

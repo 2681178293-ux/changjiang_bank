@@ -1,0 +1,165 @@
+# -*- coding: utf-8 -*-
+
+################################################################################
+## Form generated from reading UI file 'changjiang_01_main.ui'
+##
+## Created by: Qt User Interface Compiler version 6.12.0
+##
+## WARNING! All changes made in this file will be lost when recompiling UI file!
+################################################################################
+
+from PySide6.QtCore import (QCoreApplication, QDate, QDateTime, QLocale,
+    QMetaObject, QObject, QPoint, QRect,
+    QSize, QTime, QUrl, Qt)
+from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
+    QFont, QFontDatabase, QGradient, QIcon,
+    QImage, QKeySequence, QLinearGradient, QPainter,
+    QPalette, QPixmap, QRadialGradient, QTransform)
+from PySide6.QtWidgets import (QApplication, QCheckBox, QComboBox, QLabel,
+    QLineEdit, QPlainTextEdit, QPushButton, QSizePolicy,
+    QSpinBox, QToolButton, QWidget)
+
+class Ui_ChangjiangMain(object):
+    def setupUi(self, main_window):
+        if not main_window.objectName():
+            main_window.setObjectName(u"main_window")
+        main_window.resize(780, 740)
+        self.main_btn_login = QPushButton(main_window)
+        self.main_btn_login.setObjectName(u"main_btn_login")
+        self.main_btn_login.setGeometry(QRect(10, 10, 70, 30))
+        self.main_lbl_status = QLabel(main_window)
+        self.main_lbl_status.setObjectName(u"main_lbl_status")
+        self.main_lbl_status.setGeometry(QRect(90, 10, 580, 30))
+        self.main_btn_settings = QPushButton(main_window)
+        self.main_btn_settings.setObjectName(u"main_btn_settings")
+        self.main_btn_settings.setGeometry(QRect(690, 10, 80, 30))
+        self.main_lbl_date_start = QLabel(main_window)
+        self.main_lbl_date_start.setObjectName(u"main_lbl_date_start")
+        self.main_lbl_date_start.setGeometry(QRect(10, 55, 62, 26))
+        self.main_input_date_start = QLineEdit(main_window)
+        self.main_input_date_start.setObjectName(u"main_input_date_start")
+        self.main_input_date_start.setGeometry(QRect(75, 55, 120, 26))
+        self.main_btn_date_start_pick = QToolButton(main_window)
+        self.main_btn_date_start_pick.setObjectName(u"main_btn_date_start_pick")
+        self.main_btn_date_start_pick.setGeometry(QRect(200, 55, 28, 26))
+        self.main_lbl_date_end = QLabel(main_window)
+        self.main_lbl_date_end.setObjectName(u"main_lbl_date_end")
+        self.main_lbl_date_end.setGeometry(QRect(240, 55, 62, 26))
+        self.main_input_date_end = QLineEdit(main_window)
+        self.main_input_date_end.setObjectName(u"main_input_date_end")
+        self.main_input_date_end.setGeometry(QRect(305, 55, 120, 26))
+        self.main_btn_date_end_pick = QToolButton(main_window)
+        self.main_btn_date_end_pick.setObjectName(u"main_btn_date_end_pick")
+        self.main_btn_date_end_pick.setGeometry(QRect(430, 55, 28, 26))
+        self.main_lbl_date_fmt = QLabel(main_window)
+        self.main_lbl_date_fmt.setObjectName(u"main_lbl_date_fmt")
+        self.main_lbl_date_fmt.setGeometry(QRect(470, 55, 130, 26))
+        self.main_chk_fund_flow = QCheckBox(main_window)
+        self.main_chk_fund_flow.setObjectName(u"main_chk_fund_flow")
+        self.main_chk_fund_flow.setGeometry(QRect(10, 95, 92, 24))
+        self.main_chk_fund_flow.setChecked(True)
+        self.main_chk_discount_flow = QCheckBox(main_window)
+        self.main_chk_discount_flow.setObjectName(u"main_chk_discount_flow")
+        self.main_chk_discount_flow.setGeometry(QRect(105, 95, 92, 24))
+        self.main_chk_discount_flow.setChecked(True)
+        # 以下三项暂时从前端隐藏，后端实现保留；日后恢复时把 setVisible(False) 改为 True、setChecked(False) 改为 True，并把分组坐标移回 575/615
+        self.main_chk_discount_info = QCheckBox(main_window)
+        self.main_chk_discount_info.setObjectName(u"main_chk_discount_info")
+        self.main_chk_discount_info.setGeometry(QRect(200, 95, 130, 24))
+        self.main_chk_discount_info.setChecked(False)
+        self.main_chk_discount_info.setVisible(False)
+        self.main_chk_endorse_flow = QCheckBox(main_window)
+        self.main_chk_endorse_flow.setObjectName(u"main_chk_endorse_flow")
+        self.main_chk_endorse_flow.setGeometry(QRect(335, 95, 92, 24))
+        self.main_chk_endorse_flow.setChecked(False)
+        self.main_chk_endorse_flow.setVisible(False)
+        self.main_chk_endorse_info = QCheckBox(main_window)
+        self.main_chk_endorse_info.setObjectName(u"main_chk_endorse_info")
+        self.main_chk_endorse_info.setGeometry(QRect(430, 95, 130, 24))
+        self.main_chk_endorse_info.setChecked(False)
+        self.main_chk_endorse_info.setVisible(False)
+        self.main_lbl_group = QLabel(main_window)
+        self.main_lbl_group.setObjectName(u"main_lbl_group")
+        self.main_lbl_group.setGeometry(QRect(210, 95, 40, 24))
+        self.main_cbo_group = QComboBox(main_window)
+        self.main_cbo_group.addItem("")
+        self.main_cbo_group.addItem("")
+        self.main_cbo_group.addItem("")
+        self.main_cbo_group.addItem("")
+        self.main_cbo_group.addItem("")
+        self.main_cbo_group.setObjectName(u"main_cbo_group")
+        self.main_cbo_group.setGeometry(QRect(250, 95, 60, 24))
+        self.main_chk_timer = QCheckBox(main_window)
+        self.main_chk_timer.setObjectName(u"main_chk_timer")
+        self.main_chk_timer.setGeometry(QRect(10, 130, 92, 24))
+        self.main_lbl_interval = QLabel(main_window)
+        self.main_lbl_interval.setObjectName(u"main_lbl_interval")
+        self.main_lbl_interval.setGeometry(QRect(105, 130, 82, 24))
+        self.main_input_interval = QSpinBox(main_window)
+        self.main_input_interval.setObjectName(u"main_input_interval")
+        self.main_input_interval.setGeometry(QRect(190, 130, 55, 24))
+        self.main_input_interval.setMinimum(1)
+        self.main_input_interval.setMaximum(1440)
+        self.main_input_interval.setValue(10)
+        self.main_lbl_timer_state = QLabel(main_window)
+        self.main_lbl_timer_state.setObjectName(u"main_lbl_timer_state")
+        self.main_lbl_timer_state.setGeometry(QRect(255, 130, 110, 24))
+        self.main_btn_sync = QPushButton(main_window)
+        self.main_btn_sync.setObjectName(u"main_btn_sync")
+        self.main_btn_sync.setGeometry(QRect(10, 170, 135, 30))
+        self.main_btn_exit = QPushButton(main_window)
+        self.main_btn_exit.setObjectName(u"main_btn_exit")
+        self.main_btn_exit.setGeometry(QRect(155, 170, 70, 30))
+        self.main_lbl_order = QLabel(main_window)
+        self.main_lbl_order.setObjectName(u"main_lbl_order")
+        self.main_lbl_order.setGeometry(QRect(235, 170, 535, 30))
+        self.main_lbl_log = QLabel(main_window)
+        self.main_lbl_log.setObjectName(u"main_lbl_log")
+        self.main_lbl_log.setGeometry(QRect(10, 210, 60, 24))
+        self.main_log_area = QPlainTextEdit(main_window)
+        self.main_log_area.setObjectName(u"main_log_area")
+        self.main_log_area.setGeometry(QRect(10, 235, 760, 490))
+        self.main_log_area.setReadOnly(True)
+
+        self.retranslateUi(main_window)
+
+        self.main_cbo_group.setCurrentIndex(3)
+
+
+        QMetaObject.connectSlotsByName(main_window)
+    # setupUi
+
+    def retranslateUi(self, main_window):
+        main_window.setWindowTitle(QCoreApplication.translate("ChangjiangMain", u"\u6c5f\u82cf\u957f\u6c5f\u5546\u4e1a\u94f6\u884c\u5de5\u5177v1.0 \u4e3b\u754c\u9762", None))
+        self.main_btn_login.setText(QCoreApplication.translate("ChangjiangMain", u"\u767b\u5f55", None))
+        self.main_lbl_status.setText(QCoreApplication.translate("ChangjiangMain", u"\u672a\u767b\u5f55", None))
+        self.main_btn_settings.setText(QCoreApplication.translate("ChangjiangMain", u"\u8bbe\u7f6e", None))
+        self.main_lbl_date_start.setText(QCoreApplication.translate("ChangjiangMain", u"\u8d77\u59cb\u65e5\u671f", None))
+        self.main_input_date_start.setText(QCoreApplication.translate("ChangjiangMain", u"2026-11-18", None))
+        self.main_btn_date_start_pick.setText(QCoreApplication.translate("ChangjiangMain", u"...", None))
+        self.main_lbl_date_end.setText(QCoreApplication.translate("ChangjiangMain", u"\u7ec8\u6b62\u65e5\u671f", None))
+        self.main_input_date_end.setText(QCoreApplication.translate("ChangjiangMain", u"2026-11-19", None))
+        self.main_btn_date_end_pick.setText(QCoreApplication.translate("ChangjiangMain", u"...", None))
+        self.main_lbl_date_fmt.setText(QCoreApplication.translate("ChangjiangMain", u"(YYYY:MM:DD)", None))
+        self.main_chk_fund_flow.setText(QCoreApplication.translate("ChangjiangMain", u"\u8d44\u91d1\u6d41\u6c34", None))
+        self.main_chk_discount_flow.setText(QCoreApplication.translate("ChangjiangMain", u"\u8d34\u73b0\u6d41\u6c34", None))
+        self.main_chk_discount_info.setText(QCoreApplication.translate("ChangjiangMain", u"\u8d34\u73b0\u7968\u9762\u4fe1\u606f", None))
+        self.main_chk_endorse_flow.setText(QCoreApplication.translate("ChangjiangMain", u"\u80cc\u4e66\u6d41\u6c34", None))
+        self.main_chk_endorse_info.setText(QCoreApplication.translate("ChangjiangMain", u"\u80cc\u4e66\u7968\u9762\u4fe1\u606f", None))
+        self.main_lbl_group.setText(QCoreApplication.translate("ChangjiangMain", u"\u5206\u7ec4", None))
+        self.main_cbo_group.setItemText(0, QCoreApplication.translate("ChangjiangMain", u"A", None))
+        self.main_cbo_group.setItemText(1, QCoreApplication.translate("ChangjiangMain", u"B", None))
+        self.main_cbo_group.setItemText(2, QCoreApplication.translate("ChangjiangMain", u"C", None))
+        self.main_cbo_group.setItemText(3, QCoreApplication.translate("ChangjiangMain", u"D", None))
+        self.main_cbo_group.setItemText(4, QCoreApplication.translate("ChangjiangMain", u"E", None))
+
+        self.main_chk_timer.setText(QCoreApplication.translate("ChangjiangMain", u"\u5b9a\u65f6\u540c\u6b65", None))
+        self.main_lbl_interval.setText(QCoreApplication.translate("ChangjiangMain", u"\u95f4\u9694(\u5206\u949f)", None))
+        self.main_lbl_timer_state.setText(QCoreApplication.translate("ChangjiangMain", u"\u5b9a\u65f6\u672a\u542f\u7528", None))
+        self.main_btn_sync.setText(QCoreApplication.translate("ChangjiangMain", u"\u4e00\u952e\u767b\u5f55\u540c\u6b65\u6570\u636e", None))
+        self.main_btn_exit.setText(QCoreApplication.translate("ChangjiangMain", u"\u9000\u51fa", None))
+        self.main_lbl_order.setText(QCoreApplication.translate("ChangjiangMain", u"\u987a\u5e8f\uff1a\u8d44\u91d1\u6d41\u6c34 \u2192 \u8d34\u73b0\u6d41\u6c34\uff08\u767b\u5f55\u540e\u81ea\u52a8\u62c9\u53d6\uff09", None))
+        self.main_lbl_log.setText(QCoreApplication.translate("ChangjiangMain", u"\u65e5\u5fd7", None))
+        self.main_log_area.setPlainText(QCoreApplication.translate("ChangjiangMain", u"\u70b9\u51fb\u300c\u767b\u5f55\u300d\u81ea\u52a8\u767b\u5f55\u7f51\u94f6\uff0c\u767b\u5f55\u6210\u529f\u540e\u9009\u62e9\u65e5\u671f\u5e76\u70b9\u300c\u4e00\u952e\u767b\u5f55\u540c\u6b65\u6570\u636e\u300d\u3002", None))
+    # retranslateUi
+

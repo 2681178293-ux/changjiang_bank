@@ -1,0 +1,33 @@
+# 依赖
+.venv/
+__pycache__/
+*.pyc
+
+# 运行产物
+.browser_profile/
+.browser_profile_alt/
+.edge_test_profile/
+logs/
+*.db
+*.sqlite3
+output/
+
+# 打包
+build/
+dist/
+*.spec
+.pyinstaller_build/
+
+# IDE
+.idea/
+
+# 工作记录（含 API Key/账号/Cookie 明文，勿提交）
+.workbuddy/
+
+# 敏感配置（绝对不要进仓库）
+config/.env
+config/credentials.json
+config/credentials.json.tmp
+config/query_runtime.json
+erp_config.json
+*.log

@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>ChangjiangMain</class>
+ <widget class="QWidget" name="main_window">
+  <property name="geometry">
+   <rect><x>0</x><y>0</y><width>780</width><height>740</height></rect>
+  </property>
+  <property name="windowTitle"><string>江苏长江商业银行工具v1.0 主界面</string></property>
+  <widget class="QPushButton" name="main_btn_login">
+   <property name="geometry"><rect><x>10</x><y>10</y><width>70</width><height>30</height></rect></property>
+   <property name="text"><string>登录</string></property>
+  </widget>
+  <widget class="QLabel" name="main_lbl_status">
+   <property name="geometry"><rect><x>90</x><y>10</y><width>580</width><height>30</height></rect></property>
+   <property name="text"><string>未登录</string></property>
+  </widget>
+  <widget class="QPushButton" name="main_btn_settings">
+   <property name="geometry"><rect><x>690</x><y>10</y><width>80</width><height>30</height></rect></property>
+   <property name="text"><string>设置</string></property>
+  </widget>
+  <widget class="QLabel" name="main_lbl_date_start">
+   <property name="geometry"><rect><x>10</x><y>55</y><width>62</width><height>26</height></rect></property>
+   <property name="text"><string>起始日期</string></property>
+  </widget>
+  <widget class="QLineEdit" name="main_input_date_start">
+   <property name="geometry"><rect><x>75</x><y>55</y><width>120</width><height>26</height></rect></property>
+   <property name="text"><string>2026-11-18</string></property>
+  </widget>
+  <widget class="QToolButton" name="main_btn_date_start_pick">
+   <property name="geometry"><rect><x>200</x><y>55</y><width>28</width><height>26</height></rect></property>
+   <property name="text"><string>...</string></property>
+  </widget>
+  <widget class="QLabel" name="main_lbl_date_end">
+   <property name="geometry"><rect><x>240</x><y>55</y><width>62</width><height>26</height></rect></property>
+   <property name="text"><string>终止日期</string></property>
+  </widget>
+  <widget class="QLineEdit" name="main_input_date_end">
+   <property name="geometry"><rect><x>305</x><y>55</y><width>120</width><height>26</height></rect></property>
+   <property name="text"><string>2026-11-19</string></property>
+  </widget>
+  <widget class="QToolButton" name="main_btn_date_end_pick">
+   <property name="geometry"><rect><x>430</x><y>55</y><width>28</width><height>26</height></rect></property>
+   <property name="text"><string>...</string></property>
+  </widget>
+  <widget class="QLabel" name="main_lbl_date_fmt">
+   <property name="geometry"><rect><x>470</x><y>55</y><width>130</width><height>26</height></rect></property>
+   <property name="text"><string>(YYYY:MM:DD)</string></property>
+  </widget>
+  <widget class="QCheckBox" name="main_chk_fund_flow">
+   <property name="geometry"><rect><x>10</x><y>95</y><width>92</width><height>24</height></rect></property>
+   <property name="text"><string>资金流水</string></property>
+   <property name="checked"><bool>true</bool></property>
+  </widget>
+  <widget class="QCheckBox" name="main_chk_discount_flow">
+   <property name="geometry"><rect><x>105</x><y>95</y><width>92</width><height>24</height></rect></property>
+   <property name="text"><string>贴现流水</string></property>
+   <property name="checked"><bool>true</bool></property>
+  </widget>
+  <!-- 以下三项暂时从前端隐藏，后端实现保留；日后恢复时把 visible 改为 true、checked 改为 true，并把分组坐标移回 575/615 -->
+  <widget class="QCheckBox" name="main_chk_discount_info">
+   <property name="geometry"><rect><x>200</x><y>95</y><width>130</width><height>24</height></rect></property>
+   <property name="text"><string>贴现票面信息</string></property>
+   <property name="checked"><bool>false</bool></property>
+   <property name="visible"><bool>false</bool></property>
+  </widget>
+  <widget class="QCheckBox" name="main_chk_endorse_flow">
+   <property name="geometry"><rect><x>335</x><y>95</y><width>92</width><height>24</height></rect></property>
+   <property name="text"><string>背书流水</string></property>
+   <property name="checked"><bool>false</bool></property>
+   <property name="visible"><bool>false</bool></property>
+  </widget>
+  <widget class="QCheckBox" name="main_chk_endorse_info">
+   <property name="geometry"><rect><x>430</x><y>95</y><width>130</width><height>24</height></rect></property>
+   <property name="text"><string>背书票面信息</string></property>
+   <property name="checked"><bool>false</bool></property>
+   <property name="visible"><bool>false</bool></property>
+  </widget>
+  <widget class="QLabel" name="main_lbl_group">
+   <property name="geometry"><rect><x>210</x><y>95</y><width>40</width><height>24</height></rect></property>
+   <property name="text"><string>分组</string></property>
+  </widget>
+  <widget class="QComboBox" name="main_cbo_group">
+   <property name="geometry"><rect><x>250</x><y>95</y><width>60</width><height>24</height></rect></property>
+   <property name="currentIndex"><number>3</number></property>
+   <item><property name="text"><string>A</string></property></item>
+   <item><property name="text"><string>B</string></property></item>
+   <item><property name="text"><string>C</string></property></item>
+   <item><property name="text"><string>D</string></property></item>
+   <item><property name="text"><string>E</string></property></item>
+  </widget>
+  <widget class="QCheckBox" name="main_chk_timer">
+   <property name="geometry"><rect><x>10</x><y>130</y><width>92</width><height>24</height></rect></property>
+   <property name="text"><string>定时同步</string></property>
+  </widget>
+  <widget class="QLabel" name="main_lbl_interval">
+   <property name="geometry"><rect><x>105</x><y>130</y><width>82</width><height>24</height></rect></property>
+   <property name="text"><string>间隔(分钟)</string></property>
+  </widget>
+  <widget class="QSpinBox" name="main_input_interval">
+   <property name="geometry"><rect><x>190</x><y>130</y><width>55</width><height>24</height></rect></property>
+   <property name="minimum"><number>1</number></property>
+   <property name="maximum"><number>1440</number></property>
+   <property name="value"><number>10</number></property>
+  </widget>
+  <widget class="QLabel" name="main_lbl_timer_state">
+   <property name="geometry"><rect><x>255</x><y>130</y><width>110</width><height>24</height></rect></property>
+   <property name="text"><string>定时未启用</string></property>
+  </widget>
+  <widget class="QPushButton" name="main_btn_sync">
+   <property name="geometry"><rect><x>10</x><y>170</y><width>135</width><height>30</height></rect></property>
+   <property name="text"><string>一键登录同步数据</string></property>
+  </widget>
+  <widget class="QPushButton" name="main_btn_exit">
+   <property name="geometry"><rect><x>155</x><y>170</y><width>70</width><height>30</height></rect></property>
+   <property name="text"><string>退出</string></property>
+  </widget>
+  <widget class="QLabel" name="main_lbl_order">
+   <property name="geometry"><rect><x>235</x><y>170</y><width>535</width><height>30</height></rect></property>
+   <property name="text"><string>顺序：资金流水 → 贴现流水（登录后自动拉取）</string></property>
+  </widget>
+  <widget class="QLabel" name="main_lbl_log">
+   <property name="geometry"><rect><x>10</x><y>210</y><width>60</width><height>24</height></rect></property>
+   <property name="text"><string>日志</string></property>
+  </widget>
+  <widget class="QPlainTextEdit" name="main_log_area">
+   <property name="geometry"><rect><x>10</x><y>235</y><width>760</width><height>490</height></rect></property>
+   <property name="readOnly"><bool>true</bool></property>
+   <property name="plainText"><string>点击「登录」自动登录网银，登录成功后选择日期并点「一键登录同步数据」。</string></property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

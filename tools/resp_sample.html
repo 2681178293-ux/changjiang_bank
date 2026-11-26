@@ -1,0 +1,1339 @@
+
+
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+
+
+
+<script type="text/javascript">
+	var skinColor='';
+
+skinColor='1';
+
+</script>
+<link rel="stylesheet" type="text/css" href="css/1/common.css?version=2.1" />
+<link rel="stylesheet" type="text/css" href="css/1/trans.css?version=2.2" />
+<link rel="stylesheet" type="text/css" href="css/1/nologin.css?version=2.0" />
+<link rel="stylesheet" type="text/css" href="css/ent.css?version=2.0" />
+<script type="text/javascript" src="js/jquery-3.6.0.min.js?version=1.3"></script>
+<script type="text/javascript" src="js/jquery-migrate-1.4.1.min.js?version=1.3"></script>
+<script type="text/javascript"  src="js/common.js?version=2.1"></script>
+<script type="text/javascript"  src="js/scriptlib.js?version=2.1"></script>
+<script type="text/javascript"  src="js/ajax.js?version=2.1"></script>
+<script type="text/javascript"  src="js/transfer.js?version=2.1"></script>
+<script type="text/javascript"  src="js/amount.js?version=2.1"></script>
+<script type="text/javascript"  src="js/jquery/jquery.form.js"></script>
+<script type="text/javascript"  src="js/jquery/jquery.MultiFile.js"></script>
+<script type="text/javascript"  src="js/jquery.qrcode.min.js"></script>
+<meta http-equiv="Expires" CONTENT="0">
+<meta http-equiv="Cache-Control" CONTENT="no-cache">
+<meta http-equiv="Pragma" CONTENT="no-cache">
+
+
+<script type="text/javascript">
+
+function displayErr(size){
+	try{
+		closeProcess();
+	}catch(err){}
+	if(document.getElementById("EEE")){
+		var err=document.getElementById("EEE").innerHTML;
+		if(err!=null&&err!=""){
+			document.getElementById("EEE").innerHTML=err;
+			$("#EEE").html(err);
+			$(".errors").css("display","block");
+		}else{
+			$(".errors").css("display","none");
+		}
+        if(!isNaN(size)){
+            window.parent.document.getElementById("mainContent").style.height = size+"px";
+        }else{
+            window.parent.document.getElementById("mainContent").style.height = ($(".bodyer").height())+"px";
+        }
+	}
+}
+function throwValidationAtEEE(valiInfo,place)
+{
+    if(!place){
+    	place="EEE";
+    }
+	PEGetElement(place).innerHTML = valiInfo;
+	displayErr();
+}
+function reSize(size){
+	try{
+		closeProcess();
+	}catch(err){}
+	if(PEGetElement("footer")){
+	PEGetElement("footer").style.display="none";
+	}
+	displayErr();
+	if(!isNaN(size)){
+		window.parent.document.getElementById("mainContent").style.height = size+"px";
+	}else{
+		window.parent.document.getElementById("mainContent").style.height = ($(".bodyer").height())+"px";
+	}
+	this.document.getElementById("positionText").innerHTML=window.parent.titleText;
+	changeImg(skinColor);
+}
+
+String.prototype.trim = function () {
+	 return this .replace(/^\s*([\S\s]*?)\s*$/, '$1' );
+}
+
+	top.window.UIBSPageNo = "";
+
+		function star1(id){     //id 为下拉框的id,下框属性必须得有 data-toggle="select",需要在页面加载完执行。
+			var objdiv = $("#"+id+"_div").find("div");
+		 	for(var i=0;i<objdiv.length;i++)
+		 	{
+		 		var txt = objdiv[i].innerHTML.split("/");
+		 		//for(var j=0;j<txt.length;j++){
+		 			if(!isNaN(Number(txt[0]))){
+		 				var k=txt[0].length;
+		 				var LoanAcNo;
+		 				if(k>8){
+		 					txt[0]=txt[0].substring(0,4)+"****"+txt[0].substring(k-4,k);
+						}
+						if(k>6&&k<=8){
+							txt[0]=txt[0].substring(0,3)+"***"+txt[0].substring(k-3,k);
+						}
+						if(k<=6){
+							txt[0]=txt[0];
+						}
+		 			}
+		 		//}
+		 		objdiv[i].innerHTML= txt.join("/");
+		 	}
+		}
+ 
+	function star(id){     //id 为下拉框的id,下框属性必须得有 data-toggle="select",需要在页面加载完执行。
+		$().ready(function(){
+			var objdiv = $("#"+id+"_div").find("div");
+		 	for(var i=0;i<objdiv.length;i++)
+		 	{
+		 		var txt = objdiv[i].innerHTML.split("/");
+		 		//for(var j=0;j<txt.length;j++){
+		 			if(!isNaN(Number(txt[0]))){
+		 				var k=txt[0].length;
+		 				var LoanAcNo;
+		 				if(k>8){
+		 					txt[0]=txt[0].substring(0,4)+"****"+txt[0].substring(k-4,k);
+						}
+						if(k>6&&k<=8){
+							txt[0]=txt[0].substring(0,3)+"***"+txt[0].substring(k-3,k);
+						}
+						if(k<=6){
+							txt[0]=txt[0];
+						}
+		 			}
+		 		//}
+		 		objdiv[i].innerHTML= txt.join("/");
+		 	}
+		})	
+	}
+	
+	 function starAcNo(actNo){
+			var aa=actNo.replace(/\s+/g,"");
+			var i=aa.length;
+			var LoanAcNo;
+			if(i>8){
+				 LoanAcNo=aa.substring(0,4)+"****"+aa.substring(i-4,i);
+			}
+			if(i>6&&i<=8){
+				LoanAcNo=aa.substring(0,3)+"***"+aa.substring(i-3,i);
+			}
+			if(i<=6){
+				LoanAcNo=aa;
+				}
+			return LoanAcNo;
+		}
+
+	 function divideDate(date){
+	 	var v=date.split("");
+	 	var a="";
+	 	for(i=0;i<v.length;i++){
+	 			if(i==4||i==6){
+	 				a=a+"-";
+	 			}
+	 			a=a+v[i]
+	 		}
+	 	return a;
+	 }
+
+	 function compareMonth(strDateStart,strDateEnd){
+			var startYear = strDateStart.split("-")[0];
+			var startMonth = parseInt(strDateStart.split("-")[1],"10");
+			var startDate = parseInt(strDateStart.split("-")[2],"10");
+
+			var endYear = strDateEnd.split("-")[0];
+			var endMonth = parseInt(strDateEnd.split("-")[1],"10");
+			var endDate = parseInt(strDateEnd.split("-")[2],"10");
+			
+			var mydateBefore = new Date(startYear,startMonth+3,startDate);//开始日期加3个月之后的日期
+			var mydateEnd = new Date(endYear,endMonth-3,endDate);//结束日期减3个月之后的日期
+			
+			var endY = mydateBefore.getFullYear();
+			var endM = mydateBefore.getMonth();
+			var endD = mydateBefore.getDate();
+			var endDate = endY+"-"+endM+"-"+endD;
+
+			var beforeY = mydateEnd.getFullYear();
+			var beforeM = mydateEnd.getMonth();
+			var beforeD = mydateEnd.getDate();
+			var beforeDate = beforeY+"-"+beforeM+"-"+beforeD;
+			
+			if(contrast(strDateEnd,endDate)&&contrast(beforeDate,strDateStart)){
+				return true;
+			}else{
+				return false;
+			}
+		}
+	
+	 function contrast(a, b) {
+		var arr = a.split("-");
+	    var starttime = new Date(arr[0], arr[1]-1, arr[2]);
+	    var starttimes = starttime.getTime();
+	    var arrs = b.split("-");
+	    var lktime = new Date(arrs[0], arrs[1]-1, arrs[2]);
+	    var lktimes = lktime.getTime();
+	    if (starttimes > lktimes) {
+	        return false;
+	    } else {
+	        return true;
+	    }
+	}
+
+	 function InvalideAmount(text)
+	 {
+	 	var maxnum="1000000000000";
+
+	 	for(var i=text.value.length;i>0;i--)
+	 	{
+	 		var temp=text.value;
+	 		if(parseFloat(maxnum)<=parseFloat(text.value))
+	 		{
+	 			text.value=temp.substring(0,temp.length-1);
+	 		}
+	 	}
+	 }
+	 function InvalideAmountDp(text)
+	 {
+	 	var maxnum="1000000000000000000";
+
+	 	for(var i=text.value.length;i>0;i--)
+	 	{
+	 		var temp=text.value;
+	 		if(parseFloat(maxnum)<=parseFloat(text.value))
+	 		{
+	 			text.value=temp.substring(0,temp.length-1);
+	 		}
+	 	}
+	 }
+
+	 function GetLength(str)//求字符长度
+		{
+		    var realLength = 0;
+		    for (var i = 0; i < str.length; i++)
+		    {
+		        charCode = str.charCodeAt(i);
+		        if (charCode >= 0 && charCode <= 128)
+		        realLength += 1;
+		        else
+		        realLength += 2;
+		    }
+		    return realLength;
+		}
+
+	 function divideActNo1(actNo){
+	 	var divideActNo1="";
+	 	for (i = 0; i < actNo.length; i++) {
+	 		if (i!=0 && i % 4==0){
+	 			divideActNo1 = divideActNo1 + " ";
+	 		}
+	 		divideActNo1 = divideActNo1 + actNo[i];
+	 	}
+	 	return divideActNo1;
+	 }
+	//批量票据业务获取票据ID数组
+	function getRgctIdsArray() {
+		var inputFuncs = parseInt(document.forms[0].counter.value);
+		if (inputFuncs>0) {
+			var idArray = new Array();
+			for(var i=0;i<inputFuncs;i++) {
+				var id = document.getElementById("List["+i+"].id").value;
+				if(id != null && id != "") idArray.push(id);
+			}
+			document.forms[0].rgctIds.value = idArray;
+		}
+	}
+	//验证日累计限额
+	function limitWarnDay(oparams,transactionId){
+		if(document.form1.add){
+			document.form1.add.disabled='disabled';
+	  	}
+      	postData2SRVWithCallback("LimitWarnDay.do", PEGetPostData(oparams), function(success, message){
+		    if(success){
+		    	if(document.form1.add){
+		    		document.form1.add.disabled=false;
+		    	}
+		        if(message!=""){
+		        	 if(message!=0 && message %10000==0){
+		        		 message/=10000;
+		        		 message+="万";
+		        	 }
+		        	 var cMessage = "您当日转账金额累计超过"+message+"元，为保障资金安全，请审慎选择是否继续交易?";
+		        	 var falg=message.indexOf("ENT999015");
+	    			 if(falg==-1){
+			        	 if(confirm(cMessage)){
+			        		 repeatSubmit(oparams,transactionId);
+			        	 }else{
+			        		 return ;
+			        	 }
+		        	 }else{
+		        		 repeatSubmit(oparams,transactionId);
+		        	 }
+		       }else{
+		       		repeatSubmit(oparams,transactionId);
+		       }
+		    }else{
+		    	PEGetElement("EEE").innerHTML =message;
+		    	if(document.form1.add){
+	    			document.form1.add.disabled=false;
+	    		}
+	 			reSize();
+		    }
+	    });      	
+    }
+	
+  	//行内限额查询
+	function banklimitCheck(oparams,transactionId){
+		if(document.form1.add){
+  			document.form1.add.disabled = true;
+  		}
+		PEGetElement("EEE").innerHTML = "";
+		reSize();
+		var ERiskCtrl = "N";
+		
+			ERiskCtrl="Y";
+		
+		if(PEGetPairFromArray(oparams,"TransactionTypeLimit")!=null){
+			oparams.push(new Pair("IsBankLimitControl","1"));
+			postData2SRV(transactionId, PEGetPostData(oparams), "EEE", function(success, message){
+				PEGetElement("EEE").innerHTML = "";
+				var msg= message.split("$$$");
+			    if(msg[1]=='1'){
+					var confirMessage = msg[2];
+					if(confirm(confirMessage)){
+						if(ERiskCtrl=="Y" && (transactionId=="TransferConfirm.do" || transactionId=="BankInnerTransferConfirm.do" || transactionId=="IBPSCrossBankTransferConfirm.do")){
+							oparams.push(new Pair("IsLimitConfirmOrCancel","1"));
+							
+							riskAsseCtrl(oparams,transactionId);
+						}else{
+							createProcess();
+							oparams.push(new Pair("IsLimitConfirmOrCancel","1"));
+				            postData2SRV(transactionId, PEGetPostData(oparams) , "EEE",function(){
+				            	document.form1.add.disabled = false;
+				            	reSize();
+				            	});
+						}
+			        }else{
+			        	if(document.form1.add){
+				        	document.form1.add.disabled = false;
+			        	}
+		        		return;
+		        	}
+				}else if(msg[1]=='2'){
+					document.form1.add.disabled = false;
+					PEGetElement("EEE").innerHTML = '【ENT999129】'+msg[2];
+					reSize();
+				}else if(msg[1]=='0'){
+					if(ERiskCtrl=="Y" && (transactionId=="TransferConfirm.do" || transactionId=="BankInnerTransferConfirm.do"|| transactionId=="IBPSCrossBankTransferConfirm.do")){
+						oparams.push(new Pair("IsLimitConfirmOrCancel","1"));
+						
+						riskAsseCtrl(oparams,transactionId);
+					}else{
+						createProcess();
+						oparams.push(new Pair("IsLimitConfirmOrCancel","1"));
+			            postData2SRV(transactionId, PEGetPostData(oparams) , "EEE",function(){
+			            	document.form1.add.disabled = false;
+			            	reSize();
+			            	});
+					}
+				}else{
+			    	if(document.form1.add){
+						document.form1.add.disabled = false;
+					}
+			    	PEGetElement("EEE").innerHTML = message;
+					reSize();
+				}
+			});
+		}else{
+			if(ERiskCtrl=="Y" && (transactionId=="TransferConfirm.do" || transactionId=="BankInnerTransferConfirm.do" || transactionId=="IBPSCrossBankTransferConfirm.do")){
+				
+				riskAsseCtrl(oparams,transactionId);
+			}else{
+				createProcess();
+	            postData2SRV(transactionId, PEGetPostData(oparams) , "EEE",function(){
+	            	reSize();
+	            	document.form1.add.disabled=false;
+	            });
+			}
+		}
+	}
+  	
+  	//行内限额批量查询(手工录入)
+	function batchBanklimitCheck(transactionId,form1,click){
+		PEGetElement("EEE").innerHTML = "";
+		reSize();
+		if("1" == document.form1.IsBankLimitControl.value){
+			post2SRV(transactionId,form1,click,"EEE",function(success, message){
+				document.form1.add.disabled = true;
+				PEGetElement("EEE").innerHTML = "";
+				var msg= message.split("$$$");
+			    if(msg[1]=='1'){
+					var confirMessage = msg[2];
+					if(confirm(confirMessage)){
+						createProcess();
+						$("#IsLimitConfirmOrCancel").val("1")
+						post2SRV(transactionId,form1,click,'EEE',function(){reSize();});
+			        }else{
+			        	document.form1.add.disabled = false;
+		        		return;
+		        	}
+				}else if(msg[1]=='2'){
+					document.form1.add.disabled = false;
+					PEGetElement("EEE").innerHTML = '【ENT999129】'+msg[2];
+					reSize();
+				}else{
+			    	document.form1.add.disabled = false;
+			    	PEGetElement("EEE").innerHTML = message;
+					reSize();
+				}
+			});
+		}else {
+			post2SRV(transactionId,form1,click,'EEE',function(){reSize();});
+		}
+	}
+  	
+	//行内限额批量查询(文件上传)
+	function batchBanklimitFile(targetURL){
+		document.form1.add.disabled = true;
+		PEGetElement("EEE").innerHTML = "";
+		reSize();
+		if("1" == document.form1.IsBankLimitControl.value){
+			var options={ 
+		          type:"post", 
+		          url:targetURL, 
+		          async: false, 
+		          enctype:"multipart/form-data", 
+		          iframe:true, 
+		          dataType:"Text", 
+		          error:function(data){
+		        	  document.form1.add.disabled = false;
+		        	  PEGetElement("EEE").innerHTML = '【ENT999127】交易处理失败，请联系开户行'; 
+		        	  reSize();
+		          },  
+		          success:function(message){
+		            PEGetElement("EEE").innerHTML = "";
+					var msg = message.split("$$$");
+		        	var msgErr = message.substring(message.lastIndexOf("【"),message.length-1).split(" ");
+					if(msg[1] == '0'){
+						createProcess();
+						$("#IsLimitConfirmOrCancel").val("1");
+						document.forms[0].action = targetURL;
+					    document.forms[0].submit();
+					}else if(msg[1]=='1'){
+						var confirMessage = msg[2];
+						if(confirm(confirMessage)){
+							createProcess();
+							$("#IsLimitConfirmOrCancel").val("1");
+	   						document.forms[0].action = targetURL;
+	   					    document.forms[0].submit();
+				        }else{
+				        	document.form1.add.disabled = false;
+			        		return;
+			        	}
+					}else if(msg[1]=='2'){
+						document.form1.add.disabled = false;
+						PEGetElement("EEE").innerHTML = '【ENT999129】'+msg[2];
+						reSize();
+				    }else{
+				    	document.form1.add.disabled = false;
+				    	if(message.indexOf("系统错误提示!")>-1){
+			        		  message = message.replace("系统错误提示!","");
+			        		  PEGetElement("view").innerHTML="<div id=\"hidebg\"></div><div id=\"ErrorBox\" style=\"position: fixed; left:6%; bottom:22%; width: 820px; height: 380px; background-color: white;border: 1px solid gray;display: none;z-index: 100;\"><div class=\"contentDiv\" style=\"padding-top: 16px; width: 750px;margin-left: 12px\"><table width=\"100%\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\" class=\"transTable\" style=\"margin-top: 6px; margin-left: 0px;\" ><tr> <td width=\"100%\"><table width=\"100%\"><tr align=\"right\"> <td align=\"left\" class=\"tdTitle\" style='word-wrap:break-word;word-break:break-all;width:800px;border: 1px;text-indent: 2em;'><div style=\"overflow-x: hidden;height:260px;margin-left: 0px;width: 800px;align:center\"><pre id=\"ErrorBoxPre\" style=\"font-size:14px;font:normal;margin-top: 20px;width: 780px;text-align: center;\"></pre></div></td></tr>	</table></td></tr><tr align=\"center\"><td><div style=\"margin-top: 12px\"><input type=\"button\" onclick=\"CloseErrorBox()\" class=\"btnStyleColor\" value=\"确定\"/></div></td></tr></table></div></div>";
+			        		  document.getElementById("ErrorBoxPre").innerHTML = message.replace(/(^\s*)|(\s*$)/g,"");
+			        		  ShowErrorBox();
+				        	  reSize();
+			        	}else{
+					    	PEGetElement("EEE").innerHTML = msgErr[0] + msgErr[1];
+							reSize();
+						}
+					}
+		       }
+		    };
+		    var upload = $('#UploadFile').val();
+		    if (upload.length == 0) {
+		    	throwValidationAtEEE("上传文件不能为空!","EEE");
+		        return false;
+		    } else {
+		    	return $('#form1').ajaxSubmit(options);
+		    }
+		}else{
+			document.forms[0].encoding="multipart/form-data";
+		    document.forms[0].action = targetURL;
+		    document.forms[0].submit();
+		}
+	}
+	
+	function ShowErrorBox() {
+		var hidebg=document.getElementById("hidebg");
+		hidebg.style.display="block";
+		hidebg.style.height=$(document).height();
+		$("#ErrorBox").css("display", "");
+	}
+
+	function CloseErrorBox() {
+		document.getElementById("hidebg").style.display="none";
+		$("#ErrorBox").css("display", "none");
+	}
+	
+	//重复提交[涉及防重复提交的交易：向本行转账，向他行转账]
+	function repeatSubmit(oparams,transactionId){
+		if(document.form1.add){
+		  	document.form1.add.disabled='disabled';
+		}
+	  	postData2SRVWithCallback("EOneDateRep.do", PEGetPostData(oparams), function(success, message){
+		    if(success){
+		    	if(document.form1.add){
+				  	document.form1.add.disabled=false;
+				}
+		        if(message==0){
+		        	checkAccount(oparams,transactionId);
+		     	}else{
+			       if(message!="" && message!=null){
+			        //今日已存在与本笔完全相同的交易,为防范造成重复交易的风险,请确认本笔业务是否继续提交
+			       	   var payeeAcName = document.forms[0].PayeeAcName.value;
+			       	   var payeeAcNo = document.forms[0].PayeeAcNo.value;
+			       	   var trsAmount = document.forms[0].Amount.value;
+				       	if(trsAmount!=0 && trsAmount %10000==0){
+				       		trsAmount/=10000;
+				       		trsAmount+="万";
+			        	 }
+			       	   var confirMessage = "尊敬的用户，您今日已向【"+payeeAcName+"】的账号【"+payeeAcNo+"】发起过金额为【"+trsAmount+"元】的汇款，是否继续本次转账？";
+			           if(confirm(confirMessage)){
+			        	   checkAccount(oparams,transactionId);
+			           }
+			       }else{
+			    	   checkAccount(oparams,transactionId);
+			       }
+			    }
+			  }else{
+				  if(message!=''){
+			          PEGetElement("EEE").innerHTML=message;
+			          if(document.form1.add){
+			  		      document.form1.add.disabled=false;
+			  		  }
+			 		  reSize();
+			      }
+			   }
+		  });
+	}
+	
+	//检查可疑账号[不涉及防重复提交的交易：费用报销和预借，企业内部转账，网银互联向他行转账，向本行定时转账签约，向他行定时转账签约，单笔上划，单笔下划]
+	function checkAccount(oparams,transactionId){
+		if(document.form1.add){
+		  	document.form1.add.disabled = 'disabled';
+		}
+	 	postData2SRVWithCallback("CheckAccount.do", PEGetPostData(oparams), function(success, message){
+	 	    if(success){
+	 		   var msg = message.split("&&&");
+	 		   if(msg[0] == '0'){
+	 			  checkAcType(oparams,transactionId);
+// 	 				banklimitCheck(oparams,transactionId);
+	 			}else if(msg[0] == '1'){
+	 				var confirMessage = msg[1];
+	 				if(confirm(confirMessage)){
+	 					  checkAcType(oparams,transactionId);
+// 	 					banklimitCheck(oparams,transactionId);
+	 		        }
+	 				if(document.form1.add){
+	 					document.form1.add.disabled = false;
+	 				}
+	 			}else if(msg[0] == '2'){
+	 				PEGetElement("EEE").innerHTML = '【ENT999999】'+msg[1];
+	 				reSize();
+	 			}
+	 	     }else{
+	 	    	if(document.form1.add){
+	 	    		document.form1.add.disabled = false;
+	 	    	}
+	 	    	PEGetElement("EEE").innerHTML = message;
+	 			reSize();
+	 		 }
+	 	  });
+	 }
+	
+	//批量检查可疑账号[手动录入]
+	function batchCheckAccount(transactionId,form1,click){
+		if(document.form1.add){
+		  	document.form1.add.disabled = 'disabled';
+		}
+		post2SRVWithCallback("BatchCheckAccount.do",document.forms[0], null ,  function(success, message){
+		    if(success){
+		       document.forms[0].PayerAcNoAlias.disabled=false;
+		       var msg = message.split("&&&");
+			   if(msg[0]=='0'){
+				   
+				   batchCheckIsAcNo(transactionId,document.form1,click);
+				}else if(msg[0]=='1'){
+					var confirMessage =msg[1];
+					if(confirm(confirMessage)){
+						
+						batchCheckIsAcNo(transactionId,document.form1,click);
+			        }
+					if(document.form1.add){
+	 					document.form1.add.disabled = false;
+	 				}
+				}else if(msg[0]=='2'){
+					if(document.form1.add){
+					  	document.form1.add.disabled = 'disabled';
+					}
+					PEGetElement("EEE").innerHTML ='【ENT999999】'+msg[1];
+					reSize();
+				}else{
+					document.form1.add.disabled = false;
+					var msgErr = message.substring(message.lastIndexOf("【"),message.length-1).split(" ");
+   					PEGetElement("EEE").innerHTML = msgErr[0]+msgErr[1];
+   					reSize();
+   	   			}
+		    }else{
+		    	if(document.form1.add){
+		 	    	document.form1.add.disabled = false;
+				}
+		    	PEGetElement("EEE").innerHTML = message;
+		    	reSize();
+			}
+		});	
+	}
+	
+	//校验行内转账收款人账号是否为私人账户
+	function checkAcType(oparams,transactionId){
+		if(transactionId=='BankInnerTransferConfirm.do'){
+			postData2SRVWithCallback("CheckPayeeAcType.do", PEGetPostData(oparams), function(success, message){
+			    if(success){
+			      if(message=='N'){
+			    	  document.form1.add.disabled=false;
+			    	  PEGetElement("EEE").innerHTML="【ENT999109】收款账户类型错误";
+			    	  reSize();
+			    	  return;
+			      }else if(message=='0'||message=='1'){
+			    	  oparams.push(new Pair("IsAcType",message));
+				    	  
+				    	  	sendArray.push(new Pair("IsAcType",message));
+					  	  
+			    	  banklimitCheck(oparams,transactionId);
+			      }else{
+			    	  document.form1.add.disabled=false;
+			    	  PEGetElement("EEE").innerHTML="【ENT999109】收款账户类型错误";
+			    	  reSize();
+			    	  return;
+			      }
+			    }else{
+			    	document.form1.add.disabled=false;
+			    	PEGetElement("EEE").innerHTML = message ;
+			    	reSize();
+			    	return;
+				}
+			});
+		}else if(transactionId=='IBPSCrossBankTransferConfirm.do'){
+			postData2SRVWithCallback("CheckPayeeEibsAcType.do", PEGetPostData(oparams), function(success, message){
+			    if(success){
+			      if(message=='N'){
+			    	  document.form1.add.disabled=false;
+			    	  PEGetElement("EEE").innerHTML="【ENT999109】收款账户类型错误";
+			    	  reSize();
+			    	  return;
+			      }else if(message=='0'||message=='1'){
+			    	  banklimitCheck(oparams,transactionId);
+			      }else{
+			    	  document.form1.add.disabled=false;
+			    	  PEGetElement("EEE").innerHTML="【ENT999109】收款账户类型错误";
+			    	  reSize();
+			    	  return;
+			      }
+			    }else{
+			    	document.form1.add.disabled=false;
+			    	PEGetElement("EEE").innerHTML = message ;
+			    	reSize();
+			    	return;
+				}
+			});
+		}else{
+			banklimitCheck(oparams,transactionId);
+		}
+	}
+	
+	
+	function riskAsseCtrl(oparams,transactionId){
+		postData2SRVWithCallback("ERiskCtrlQry.do", PEGetPostData(oparams), function(success, message){
+		    if (success) {
+		    	PEGetElement("EEE").innerHTML = "";
+		    	var msgStr= message.split("&&&");
+		    	
+		    	if(msgStr[0]=='100'||msgStr[0]=='902'){
+		    		
+		    		PEGetElement("EEE").innerHTML=msgStr[1];
+		    		if(document.form1.add){
+			        	document.form1.add.disabled = false;
+		        	}
+		    		reSize();
+		    		return;
+		    	}else if(msgStr[0]=='901'){//进入二维码身份证认证请求
+		    		if(msgStr[2]=='0'){
+		    			
+		    			PEGetElement("EEE").innerHTML=msgStr[3];
+			    		if(document.form1.add){
+				        	document.form1.add.disabled = false;
+			        	}
+			    		reSize();
+			    		return;
+		    		}else{
+		    			
+		    			var OrderNo = msgStr[4]=="null"?"":msgStr[4];
+		    			var EncryLink = msgStr[5]=="null"?"":msgStr[5];
+		    			document.getElementById("OrderNo").value=OrderNo;
+		    			document.getElementById("OperatorFlag").value=msgStr[6];
+						showQRCode(EncryLink);
+		    		}
+		    	}else{
+		    		oparams.push(new Pair("OperatorFlag",msgStr[1]));
+		    		//原逻辑
+		    		createProcess();
+		            postData2SRV(transactionId, PEGetPostData(oparams) , "EEE",function(){
+		            	document.form1.add.disabled = false;
+		            	reSize();
+		            	});
+		    	}
+			}else{
+				PEGetElement("EEE").innerHTML=message;
+				if(document.form1.add){
+		        	document.form1.add.disabled = false;
+	        	}
+				reSize();
+				return;
+			}
+	     });
+	}
+	function showQRCode(EncryLink){
+		var m = window.parent.document.getElementById("maskLayer");
+		if(m){
+			$(m).remove();
+		}
+		var maskLayer = $("<div/>").css({
+			position:"absolute",
+			top:0,
+			left:0,
+			zIndex:99,
+			filter:"Alpha(opacity=60)",
+			opacity:0.6,
+			height:"100%",
+			width:"100%",
+			backgroundColor:"#000"
+		});
+		maskLayer[0].id="maskLayer";
+		maskLayer.height($(window.parent.document).height());
+		$(window.parent.document.body).append(maskLayer);
+		$(window.parent.document.getElementById("showQrContentDiv")).html(" ");
+		var viewQRDiv = "<div style='font-weight:800;font-size: 16px;margin-top: 50px;text-align: center;'>请通过本行手机银行扫码验证</div>"
+			 + "<div style='height: 250px;margin-top: 10px;display: flex;justify-content: center;align-items: center;' id='QRContent'>"
+			 + "</div><br/><div style='margin-bottom: 10px;text-align: center;'>"
+			 + "<input type='button' id='qrFinish' class='btnStyleColor' style='margin-right: 50px;width: 110px;' value='完成人脸验证'/>"
+			 + "<input type='button' id='qrCancel' class='btnStyleColor' value='取消'/></div>";
+		$(window.parent.document.getElementById("showQrContentDiv")).html(viewQRDiv);
+		$("#QRContent",$(window.parent.document.getElementById("showQrContentDiv"))).innerHTML = "";
+		$("#QRContent",$(window.parent.document.getElementById("showQrContentDiv"))).qrcode({
+				render: 'table',
+				width: 230,
+				height: 230,
+				text: EncryLink
+			});
+		$(window.parent.document.getElementById("qrDetailDiv")).css("display","block");
+		$(window.parent.document.getElementById("qrCancel")).unbind("click");
+		$(window.parent.document.getElementById("qrCancel")).bind('click',function(){
+			hideQRDivBox();
+		});
+		$(window.parent.document.getElementById("qrFinish")).unbind("click");
+		$(window.parent.document.getElementById("qrFinish")).bind('click',function(){
+			finishIt();
+		});
+	}
+	
+	//批量检查账号类型[手动录入]
+	function batchCheckIsAcNo(transactionId,form1,click){
+		if(document.form1.add){
+		  	document.form1.add.disabled = 'disabled';
+		}
+		post2SRVWithCallback("BatchCheckIsAcNo.do",document.forms[0], null ,  function(success, message){
+		    if(success){
+		       document.forms[0].PayerAcNoAlias.disabled=false;
+		       var msg = message.split("&&&");
+			   if(msg[0]=='N' || msg[0]=='1' || msg[0]=='0'){
+				   batchBanklimitCheck(transactionId,document.form1,click);
+				}else{
+					document.form1.add.disabled = false;
+					var msgErr = message.substring(message.lastIndexOf("【"),message.length-1).split(" ");
+   					PEGetElement("EEE").innerHTML = msgErr[0]+msgErr[1];
+   					reSize();
+   	   			}
+		    }else{
+		    	if(document.form1.add){
+		 	    	document.form1.add.disabled = false;
+				}
+		    	PEGetElement("EEE").innerHTML = message;
+		    	reSize();
+			}
+		});	
+	}
+</script>
+
+<input type="hidden" name="currentIndex" value="0"/><input type="hidden" name="pageNumber" value="1"/><input type="hidden" name="recordNumber" value="2"/>
+
+<fieldset style="border: 0px; padding: 0px;">
+ 		<table id="totalShow" width="850px" class="transTable" style="margin-top: 10px;font-size:12px;">
+					<tr>
+						<td class="transTh ac" style="color:#343434;">开始日期</td>
+						<td class="transTh ac" style="color:#343434;">结束日期</td>
+						<td class="transTh ac" style="color:#343434;">收入总笔数</td>
+						<td class="transTh ac" style="color:#343434;">收入总金额</td>
+						<td class="transTh ac" style="color:#343434;">支出总笔数</td>
+						<td class="transTh ac" style="color:#343434;">支出总金额</td>
+					</tr>
+					<tr>
+						<td class="transTd ac">2026-11-16</td>
+						<td class="transTd ac">2026-11-23</td>
+						<td class="transTd ac">1</td>
+						<td class="transTd ac" align="center">
+						
+							￥3,727,239.80 
+						
+							
+						</td>
+						<td class="transTd ac">1</td>
+						<td class="transTd ac">
+							
+								￥3,727,000.00
+							
+							
+						</td>
+						<td class="transTd ac" style="display:none">
+							<input type="hidden" name="NeedAmountSign" id="NeedAmountSign" value="Y"  />
+						</td>
+					</tr>
+				</table>
+		<table  class="transTable" cellspacing="1" align="center" style=" font-size:12px;width: 850px;margin-top: 0px;margin-bottom: 0px; padding-right: 0px;word-break:break-all;word-wrap:break-word;">
+			<tr >
+				
+				<td  class="transTh ac" style="color:#343434;font-size:12px;" >账/卡号</td>
+				<td  class="transTh ac" style="color:#343434;font-size:12px;width:9%;" >交易日期</td>
+			
+				<td  class="transTh ac" style="color:#343434;font-size:12px;width:7%;" >交易渠道</td>
+       		
+	  		
+				<td  class="transTh ac"  style="color:#343434;font-size:12px;width:5%;">币种</td>
+			
+	   		
+			
+				<td  class="transTh ac" style="color:#343434;font-size:12px;width: 85px;" >收入支出项</td>
+				<td  class="transTh ac" style="color:#343434;font-size:12px;width: 85px;" >余额</td>
+			
+			
+				<td  class="transTh ac" style="color:#343434;font-size:12px;width:7%;" >凭证号</td>
+			
+			
+			
+				<td  class="transTh ac" style="color:#343434;font-size:12px;" >对方银行名称</td>
+			
+			
+			
+				<td  class="transTh ac" style="color:#343434;font-size:12px;width:8%;" >对方账/卡号</td>
+			
+
+			
+				<td  class="transTh ac" style="color:#343434;font-size:12px;" >对方户名</td>
+			
+			
+			
+				<td  class="transTh ac" style="color:#343434;font-size:12px;width:5%;" >摘要</td>
+			
+			<!--
+			
+			<td  class="transTh ac"  >对方信息</td>
+			-->
+			
+			</tr>
+		
+			
+				
+					<tr onmouseover="over_color(this)" onmouseout="remove_color(this)">
+						
+				  		<td  class="tdce" style="font-size:12px;" ><span class="colorRed" >8020****2434</span></td>
+				  		<td  class="tdce" style="font-size:12px;" >2026-11-18&nbsp;&nbsp;
+							
+							   16:57:39
+							
+				    	</td>
+					
+						<td  class="tdce" style="font-size:12px;" >其他</td>
+				    
+					
+						<td  class="tdce" style="font-size:12px;" >人民币</td>
+					
+					
+					
+				    
+				    	<td  class="tdce" style="font-size:12px;" >
+								
+								<div align="left" style="color:#4C9CBF;width:90px;height:auto;float:left;word-break:break-all;">+￥3,727,239.80</div>
+						</td>
+						<td  class="tdce" style="font-size:12px;" ><div align="left" style="width:90px;height:auto;float:left;word-break:break-all;" class="colorRed">￥3,727,855.14</div></td>
+				    
+					
+					
+					
+						<td  class="tdce" style="font-size:12px;"  ></td>
+					
+					
+
+					
+						<td  class="tdce" style="font-size:12px;"  ></td>
+					
+					
+					
+						<td  class="tdce" style="font-size:12px;"  ><span class="colorRed" ></span></td>
+					
+
+					
+						<td  class="tdce" style="font-size:12px;" ></td>
+					
+					
+				
+						<td  class="tdce"   style="font-size:12px;" >电子汇票贴现存入 </td>
+				    
+				<!--
+						<td  class="transTd"  ></td>
+					-->
+
+				
+				
+				</tr>
+				
+					<tr onmouseover="over_color(this)" onmouseout="remove_color(this)">
+						
+				  		<td  class="tdce" style="font-size:12px;" ><span class="colorRed" >8020****2434</span></td>
+				  		<td  class="tdce" style="font-size:12px;" >2026-11-18&nbsp;&nbsp;
+							
+							   16:59:43
+							
+				    	</td>
+					
+						<td  class="tdce" style="font-size:12px;" >其他</td>
+				    
+					
+						<td  class="tdce" style="font-size:12px;" >人民币</td>
+					
+					
+					
+				    
+				    	<td  class="tdce" style="font-size:12px;" >
+								<div align="left" style="color: #AD1B3F;width:95px;height:auto;float:left;word-break:break-all;">-￥3,727,000.00</div>
+								
+						</td>
+						<td  class="tdce" style="font-size:12px;" ><div align="left" style="width:90px;height:auto;float:left;word-break:break-all;" class="colorRed">￥855.14</div></td>
+				    
+					
+					
+					
+						<td  class="tdce" style="font-size:12px;"  ></td>
+					
+					
+
+					
+						<td  class="tdce" style="font-size:12px;"  >宁波银行股份有限公司南京溧水支行</td>
+					
+					
+					
+						<td  class="tdce" style="font-size:12px;"  ><span class="colorRed" >8602 1110 0011 3832 1</span></td>
+					
+
+					
+						<td  class="tdce" style="font-size:12px;" >南京市奕诗棋精密机械有限公司</td>
+					
+					
+				
+						<td  class="tdce"   style="font-size:12px;" >往来款## </td>
+				    
+				<!--
+						<td  class="transTd"  ></td>
+					-->
+
+				
+				
+				</tr>
+				
+				
+					<tr onmouseover="over_color(this)" onmouseout="remove_color(this)">
+						
+						<td  class="transTd ac" >&nbsp;</td>
+						<td  class="transTd ac" >&nbsp;</td>
+					
+						<td  class="transTd ac" >&nbsp;</td>
+		       		
+			  		
+						<td  class="transTd ac"  >&nbsp;</td>
+					
+			   		
+					
+						<td  class="transTd ac" >&nbsp;</td>
+						<td  class="transTd ac"  >&nbsp;</td>
+					
+					
+						<td  class="transTd ac"  >&nbsp;</td>
+					
+					
+					
+						<td  class="transTd ac"  >&nbsp;</td>
+					
+					
+						<td  class="transTd ac"  >&nbsp;</td>
+					
+
+					
+						<td  class="transTd ac">&nbsp;</td>
+					
+					
+					
+						<td  class="transTd ac" >&nbsp;</td>
+					
+					<!--
+
+					-->
+					
+					</tr>
+				
+					<tr onmouseover="over_color(this)" onmouseout="remove_color(this)">
+						
+						<td  class="transTd ac" >&nbsp;</td>
+						<td  class="transTd ac" >&nbsp;</td>
+					
+						<td  class="transTd ac" >&nbsp;</td>
+		       		
+			  		
+						<td  class="transTd ac"  >&nbsp;</td>
+					
+			   		
+					
+						<td  class="transTd ac" >&nbsp;</td>
+						<td  class="transTd ac"  >&nbsp;</td>
+					
+					
+						<td  class="transTd ac"  >&nbsp;</td>
+					
+					
+					
+						<td  class="transTd ac"  >&nbsp;</td>
+					
+					
+						<td  class="transTd ac"  >&nbsp;</td>
+					
+
+					
+						<td  class="transTd ac">&nbsp;</td>
+					
+					
+					
+						<td  class="transTd ac" >&nbsp;</td>
+					
+					<!--
+
+					-->
+					
+					</tr>
+				
+					<tr onmouseover="over_color(this)" onmouseout="remove_color(this)">
+						
+						<td  class="transTd ac" >&nbsp;</td>
+						<td  class="transTd ac" >&nbsp;</td>
+					
+						<td  class="transTd ac" >&nbsp;</td>
+		       		
+			  		
+						<td  class="transTd ac"  >&nbsp;</td>
+					
+			   		
+					
+						<td  class="transTd ac" >&nbsp;</td>
+						<td  class="transTd ac"  >&nbsp;</td>
+					
+					
+						<td  class="transTd ac"  >&nbsp;</td>
+					
+					
+					
+						<td  class="transTd ac"  >&nbsp;</td>
+					
+					
+						<td  class="transTd ac"  >&nbsp;</td>
+					
+
+					
+						<td  class="transTd ac">&nbsp;</td>
+					
+					
+					
+						<td  class="transTd ac" >&nbsp;</td>
+					
+					<!--
+
+					-->
+					
+					</tr>
+				
+					<tr onmouseover="over_color(this)" onmouseout="remove_color(this)">
+						
+						<td  class="transTd ac" >&nbsp;</td>
+						<td  class="transTd ac" >&nbsp;</td>
+					
+						<td  class="transTd ac" >&nbsp;</td>
+		       		
+			  		
+						<td  class="transTd ac"  >&nbsp;</td>
+					
+			   		
+					
+						<td  class="transTd ac" >&nbsp;</td>
+						<td  class="transTd ac"  >&nbsp;</td>
+					
+					
+						<td  class="transTd ac"  >&nbsp;</td>
+					
+					
+					
+						<td  class="transTd ac"  >&nbsp;</td>
+					
+					
+						<td  class="transTd ac"  >&nbsp;</td>
+					
+
+					
+						<td  class="transTd ac">&nbsp;</td>
+					
+					
+					
+						<td  class="transTd ac" >&nbsp;</td>
+					
+					<!--
+
+					-->
+					
+					</tr>
+				
+					<tr onmouseover="over_color(this)" onmouseout="remove_color(this)">
+						
+						<td  class="transTd ac" >&nbsp;</td>
+						<td  class="transTd ac" >&nbsp;</td>
+					
+						<td  class="transTd ac" >&nbsp;</td>
+		       		
+			  		
+						<td  class="transTd ac"  >&nbsp;</td>
+					
+			   		
+					
+						<td  class="transTd ac" >&nbsp;</td>
+						<td  class="transTd ac"  >&nbsp;</td>
+					
+					
+						<td  class="transTd ac"  >&nbsp;</td>
+					
+					
+					
+						<td  class="transTd ac"  >&nbsp;</td>
+					
+					
+						<td  class="transTd ac"  >&nbsp;</td>
+					
+
+					
+						<td  class="transTd ac">&nbsp;</td>
+					
+					
+					
+						<td  class="transTd ac" >&nbsp;</td>
+					
+					<!--
+
+					-->
+					
+					</tr>
+				
+					<tr onmouseover="over_color(this)" onmouseout="remove_color(this)">
+						
+						<td  class="transTd ac" >&nbsp;</td>
+						<td  class="transTd ac" >&nbsp;</td>
+					
+						<td  class="transTd ac" >&nbsp;</td>
+		       		
+			  		
+						<td  class="transTd ac"  >&nbsp;</td>
+					
+			   		
+					
+						<td  class="transTd ac" >&nbsp;</td>
+						<td  class="transTd ac"  >&nbsp;</td>
+					
+					
+						<td  class="transTd ac"  >&nbsp;</td>
+					
+					
+					
+						<td  class="transTd ac"  >&nbsp;</td>
+					
+					
+						<td  class="transTd ac"  >&nbsp;</td>
+					
+
+					
+						<td  class="transTd ac">&nbsp;</td>
+					
+					
+					
+						<td  class="transTd ac" >&nbsp;</td>
+					
+					<!--
+
+					-->
+					
+					</tr>
+				
+					<tr onmouseover="over_color(this)" onmouseout="remove_color(this)">
+						
+						<td  class="transTd ac" >&nbsp;</td>
+						<td  class="transTd ac" >&nbsp;</td>
+					
+						<td  class="transTd ac" >&nbsp;</td>
+		       		
+			  		
+						<td  class="transTd ac"  >&nbsp;</td>
+					
+			   		
+					
+						<td  class="transTd ac" >&nbsp;</td>
+						<td  class="transTd ac"  >&nbsp;</td>
+					
+					
+						<td  class="transTd ac"  >&nbsp;</td>
+					
+					
+					
+						<td  class="transTd ac"  >&nbsp;</td>
+					
+					
+						<td  class="transTd ac"  >&nbsp;</td>
+					
+
+					
+						<td  class="transTd ac">&nbsp;</td>
+					
+					
+					
+						<td  class="transTd ac" >&nbsp;</td>
+					
+					<!--
+
+					-->
+					
+					</tr>
+				
+					<tr onmouseover="over_color(this)" onmouseout="remove_color(this)">
+						
+						<td  class="transTd ac" >&nbsp;</td>
+						<td  class="transTd ac" >&nbsp;</td>
+					
+						<td  class="transTd ac" >&nbsp;</td>
+		       		
+			  		
+						<td  class="transTd ac"  >&nbsp;</td>
+					
+			   		
+					
+						<td  class="transTd ac" >&nbsp;</td>
+						<td  class="transTd ac"  >&nbsp;</td>
+					
+					
+						<td  class="transTd ac"  >&nbsp;</td>
+					
+					
+					
+						<td  class="transTd ac"  >&nbsp;</td>
+					
+					
+						<td  class="transTd ac"  >&nbsp;</td>
+					
+
+					
+						<td  class="transTd ac">&nbsp;</td>
+					
+					
+					
+						<td  class="transTd ac" >&nbsp;</td>
+					
+					<!--
+
+					-->
+					
+					</tr>
+				
+			
+			
+			
+		
+      <tr>
+        <td colspan="15" align="right" style="background-color:#FFFFFF;">
+			<div style="font-size:14px">
+				[<a href="javascript:;" class='linkbig' disabled style="color:gray"  >首 页</a>]
+				[<a href="javascript:;" class='linkbig' disabled style="color:gray" >上一页</a>]
+				[<a href="javascript:;" class='linkbig' disabled style="color:gray" >下一页</a>]
+				[<a href="javascript:;" class='linkbig' disabled style="color:gray"  >尾页</a>]
+				<input name="GotoField" type="text" size='1'  size="1"  ><input size='1'type='button' name='GotoPage' value='转到'  disabled style="color:gray" >
+				[共2笔][共1页/第1页]
+		 <input type="submit" name="Download" class="linkbig" style="background:0;border:0px;margin-top:0px" value="下载Excel清单" onclick="ActTrsDownload(this);" />
+		 
+		
+		
+
+		
+
+		
+    		
+		
+
+		
+    		<input type="submit" name="PDFDownload" class="linkbig"
+           style="background:0;border:0px;margin-top:0px;padding-left: 0px;"
+           value="PDF下载"
+           onclick="if(document.form1.recordNumber.value>1000){alert('您查询下载的PDF数据量过大，请您使用下载Excel清单');return false;};PdfPrint(this);" />
+		
+			</div>
+    </td>
+   </tr>
+</table>
+</fieldset>
+
+
+

@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>ChangjiangSettingsLogin</class>
+ <widget class="QDialog" name="set_dialog">
+  <property name="geometry">
+   <rect><x>0</x><y>0</y><width>480</width><height>700</height></rect>
+  </property>
+  <property name="windowTitle"><string>设置 - 登录</string></property>
+  <widget class="QPushButton" name="set_btn_back">
+   <property name="geometry"><rect><x>380</x><y>8</y><width>80</width><height>28</height></rect></property>
+   <property name="text"><string>返回主界面</string></property>
+  </widget>
+  <widget class="QTabWidget" name="set_tab_widget">
+   <property name="geometry"><rect><x>10</x><y>44</y><width>460</width><height>606</height></rect></property>
+   <property name="currentIndex"><number>0</number></property>
+     <widget class="QWidget" name="set_tab_login">
+      <attribute name="title"><string>登录</string></attribute>
+      <widget class="QLabel" name="login_lbl_pin">
+       <property name="geometry"><rect><x>20</x><y>20</y><width>90</width><height>26</height></rect></property>
+       <property name="text"><string>UKey PIN</string></property>
+      </widget>
+      <widget class="QLineEdit" name="login_input_pin">
+       <property name="geometry"><rect><x>120</x><y>16</y><width>320</width><height>28</height></rect></property>
+       <property name="text"><string>12345678</string></property>
+       <property name="echoMode"><enum>QLineEdit::Password</enum></property>
+      </widget>
+      <widget class="QCheckBox" name="login_chk_show">
+       <property name="geometry"><rect><x>140</x><y>56</y><width>120</width><height>24</height></rect></property>
+       <property name="text"><string>显示密码</string></property>
+      </widget>
+      <widget class="QCheckBox" name="login_chk_auto_pin">
+       <property name="geometry"><rect><x>140</x><y>90</y><width>190</width><height>24</height></rect></property>
+       <property name="text"><string>自动输入 UKey PIN</string></property>
+       <property name="checked"><bool>true</bool></property>
+      </widget>
+      <widget class="QCheckBox" name="login_chk_headless">
+       <property name="geometry"><rect><x>20</x><y>132</y><width>440</width><height>24</height></rect></property>
+       <property name="text"><string>无头模式（浏览器无窗口后台运行；不勾=显示浏览器窗口）</string></property>
+       <property name="checked"><bool>true</bool></property>
+      </widget>
+      <widget class="QLabel" name="login_lbl_help">
+       <property name="geometry"><rect><x>20</x><y>178</y><width>440</width><height>70</height></rect></property>
+       <property name="wordWrap"><bool>true</bool></property>
+       <property name="text"><string>PIN 保存在 config.ini。自动：启动企业证书管理软件 → 打开企业网银 → 选证书 → 输 UKey PIN → 确定。无头模式下 UKey 弹窗仍可能出现。</string></property>
+      </widget>
+     </widget>
+     <widget class="QWidget" name="set_tab_sync">
+      <attribute name="title"><string>同步</string></attribute>
+      <widget class="QLabel" name="sync_lbl_default_start">
+       <property name="geometry"><rect><x>20</x><y>22</y><width>110</width><height>26</height></rect></property>
+       <property name="text"><string>起始日期默认</string></property>
+      </widget>
+      <widget class="QComboBox" name="sync_cbo_default_start">
+       <property name="geometry"><rect><x>140</x><y>18</y><width>300</width><height>28</height></rect></property>
+       <property name="currentIndex"><number>0</number></property>
+       <item><property name="text"><string>上一工作日</string></property></item>
+      </widget>
+      <widget class="QLabel" name="sync_lbl_db_path">
+       <property name="geometry"><rect><x>20</x><y>62</y><width>110</width><height>26</height></rect></property>
+       <property name="text"><string>数据库路径</string></property>
+      </widget>
+      <widget class="QLineEdit" name="sync_input_db_path">
+       <property name="geometry"><rect><x>140</x><y>58</y><width>320</width><height>28</height></rect></property>
+       <property name="text"><string>D:/newdown/xwechat_files/wxid_7eu227zrskms22_84e5/msg/fil…</string></property>
+      </widget>
+      <widget class="QLabel" name="sync_lbl_help">
+       <property name="geometry"><rect><x>20</x><y>104</y><width>440</width><height>100</height></rect></property>
+       <property name="wordWrap"><bool>true</bool></property>
+       <property name="text"><string>主界面勾选「定时同步」并点「一键登录同步数据」后按间隔重复抓取。起始日期按上方默认；终止日期固定为今天（保存后会立刻刷新）。贴现流经日若含今天，同步时会自动压到昨天。</string></property>
+      </widget>
+     </widget>
+     <widget class="QWidget" name="set_tab_api">
+      <attribute name="title"><string>飞诺 API</string></attribute>
+      <widget class="QCheckBox" name="api_chk_enable">
+       <property name="geometry"><rect><x>20</x><y>16</y><width>200</width><height>24</height></rect></property>
+       <property name="text"><string>启用飞诺 API 同步</string></property>
+       <property name="checked"><bool>true</bool></property>
+      </widget>
+      <widget class="QLabel" name="api_lbl_url">
+       <property name="geometry"><rect><x>20</x><y>54</y><width>95</width><height>26</height></rect></property>
+       <property name="text"><string>API 地址</string></property>
+      </widget>
+      <widget class="QLineEdit" name="api_input_url">
+       <property name="geometry"><rect><x>120</x><y>50</y><width>330</width><height>28</height></rect></property>
+       <property name="text"><string>https://www.feinuoyun.com/prod-api</string></property>
+      </widget>
+      <widget class="QLabel" name="api_lbl_key">
+       <property name="geometry"><rect><x>20</x><y>94</y><width>95</width><height>26</height></rect></property>
+       <property name="text"><string>API Key</string></property>
+      </widget>
+      <widget class="QLineEdit" name="api_input_key">
+       <property name="geometry"><rect><x>120</x><y>90</y><width>330</width><height>28</height></rect></property>
+       <property name="text"><string>f47ac10b-58cc-4372-a567-0e02b2c3d479</string></property>
+      </widget>
+      <widget class="QLabel" name="api_lbl_group_id">
+       <property name="geometry"><rect><x>20</x><y>134</y><width>95</width><height>26</height></rect></property>
+       <property name="text"><string>分组 ID</string></property>
+      </widget>
+      <widget class="QLineEdit" name="api_input_group_id">
+       <property name="geometry"><rect><x>120</x><y>130</y><width>330</width><height>28</height></rect></property>
+       <property name="text"><string>以主界面「分组」下拉为准</string></property>
+       <property name="readOnly"><bool>true</bool></property>
+       <property name="enabled"><bool>false</bool></property>
+      </widget>
+      <widget class="QLabel" name="api_lbl_bank">
+       <property name="geometry"><rect><x>20</x><y>174</y><width>95</width><height>26</height></rect></property>
+       <property name="text"><string>来源银行</string></property>
+      </widget>
+      <widget class="QLineEdit" name="api_input_bank">
+       <property name="geometry"><rect><x>120</x><y>170</y><width>330</width><height>28</height></rect></property>
+       <property name="text"><string>江苏长江商业银行</string></property>
+      </widget>
+      <widget class="QLabel" name="api_lbl_tool">
+       <property name="geometry"><rect><x>20</x><y>214</y><width>95</width><height>26</height></rect></property>
+       <property name="text"><string>来源(工具名)</string></property>
+      </widget>
+      <widget class="QLineEdit" name="api_input_tool">
+       <property name="geometry"><rect><x>120</x><y>210</y><width>330</width><height>28</height></rect></property>
+       <property name="text"><string>江苏长江商业银行工具v1.0</string></property>
+      </widget>
+      <widget class="QLabel" name="api_lbl_batch">
+       <property name="geometry"><rect><x>20</x><y>254</y><width>95</width><height>26</height></rect></property>
+       <property name="text"><string>批大小</string></property>
+      </widget>
+      <widget class="QSpinBox" name="api_input_batch">
+       <property name="geometry"><rect><x>120</x><y>250</y><width>80</width><height>28</height></rect></property>
+       <property name="minimum"><number>1</number></property>
+       <property name="maximum"><number>10000</number></property>
+       <property name="value"><number>50</number></property>
+      </widget>
+      <widget class="QCheckBox" name="api_chk_abort">
+       <property name="geometry"><rect><x>140</x><y>292</y><width>200</width><height>24</height></rect></property>
+       <property name="text"><string>API 失败时中断同步</string></property>
+      </widget>
+      <widget class="QLabel" name="api_lbl_help">
+       <property name="geometry"><rect><x>20</x><y>330</y><width>440</width><height>70</height></rect></property>
+       <property name="wordWrap"><bool>true</bool></property>
+       <property name="text"><string>飞诺接口另存于：D:/newdown/xwechat_files/wxid_7eu227zrskms22_84e5/msg/file/2026-11/江苏长江商业银行工具v1.0/erp_config.json</string></property>
+      </widget>
+     </widget>
+  </widget>
+  <widget class="QLabel" name="set_lbl_config_path">
+   <property name="geometry"><rect><x>10</x><y>660</y><width>460</width><height>24</height></rect></property>
+   <property name="text"><string>配置文件：D:/newdown/xwechat_files/wxid_7eu227zrskms22_84e5/msg/file/2026-11/江苏长江商业银行工具v1.0/</string></property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
